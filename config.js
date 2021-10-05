@@ -1,1 +1,0 @@
-const clarifai_api_key = '88005c5ed5844cbeadf1dcd9c209611b'

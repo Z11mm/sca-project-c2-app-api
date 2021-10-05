@@ -17,7 +17,7 @@ const handleSignUp = (dB, bcrypt) => (req, res) => {
         return trx('users')
           .returning('*')
           .insert({
-            name: name,
+            name:name,
             email: loginEmail[0],
             joined: new Date()
           })
