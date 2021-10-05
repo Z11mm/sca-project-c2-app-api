@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  # Backend api for faceapp
+  api:
+    build: .
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: faceapp
+      POSTGRES_HOST: postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/faceapp-api
+
+  # Postgres
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+
+

@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt-nodejs')
 const cors = require('cors');
 const knex = require('knex');
+const morgan = require('morgan');
 
 const signup = require('./controllers/signup');
 const signin = require('./controllers/signin');
@@ -14,14 +15,14 @@ const PORT = process.env.PORT || 3000
 const dB = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
-        user: 'postgres',
-        password: 'test',
-        database: 'faceapp'
+        host: process.env.POSTGRES_HOST,
+        user: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DB,
         // connectionString: process.env.DATABASE_URL,
         // ssl: true,
-    }
-});
+    },
+})
 
 dB.select('*').from('users')
 
@@ -30,6 +31,7 @@ const app = express()
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+app.use(morgan('combined'));
 
 app.get('/', (req, res) => {
     res.send(dB.users)
