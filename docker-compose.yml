@@ -5,18 +5,20 @@ services:
   api:
     build: .
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: faceapp
-      POSTGRES_HOST: postgres
+      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
     ports:
       - "3000:3000"
     volumes:
       - .:/usr/src/faceapp-api
 
-  # Postgres
+  # Postgres dB
   postgres:
-    image: postgres
+    build: ./postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: faceapp
+      POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
 
