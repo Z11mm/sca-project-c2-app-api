@@ -14,17 +14,9 @@ const PORT = process.env.PORT || 3000
 
 const dB = knex({
     client: 'pg',
-    connection: {
-        host: process.env.POSTGRES_HOST,
-        user: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
-        // connectionString: process.env.DATABASE_URL,
-        // ssl: true,
-    },
+    connection: process.env.POSTGRES_URI
 })
 
-dB.select('*').from('users')
 
 const app = express()
 
