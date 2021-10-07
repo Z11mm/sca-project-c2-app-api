@@ -24,6 +24,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('combined'));
 
+
+// Routes
 app.get('/', (req, res) => {
     res.send(dB.users)
 })
