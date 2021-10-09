@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send(dB.users);
 });
 
-app.post("/signin", signin.handleSignIn(dB, bcrypt));
+app.post("/signin", signin.signInAuthentication(dB, bcrypt));
 
 app.post("/signup", signup.handleSignUp(dB, bcrypt));
 

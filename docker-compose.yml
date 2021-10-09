@@ -5,7 +5,8 @@ services:
   api:
     build: .
     environment:
-      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
+      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp,
+      REDIS_URI: redis://redis:6379
     ports:
       - "3000:3000"
     volumes:
@@ -21,5 +22,11 @@ services:
       POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
+
+  # Redis dB
+  redis:
+    image: redis
+    ports: 
+      - "6379:6379"
 
 
