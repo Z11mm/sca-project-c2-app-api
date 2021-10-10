@@ -40,7 +40,7 @@ app.post("/profile/:id", profile.updateProfile(dB));
 app.put("/image", image.setImageEntries(dB));
 app.post("/imageurl", image.handleApiCall());
 
-app.get('/meeting', meeting.getMeetings(dB));
+// app.get('/meeting', meeting.getMeetings(dB));
 
 app.listen(3000, () => {
   console.log("app is running");

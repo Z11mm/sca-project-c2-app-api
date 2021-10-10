@@ -2,9 +2,10 @@ BEGIN TRANSACTION;
 
 CREATE TABLE users(
     id serial PRIMARY KEY,
-    name VARCHAR(100),
-    email text UNIQUE NOT NULL,
-    entries BIGINT DEFAULT 0,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    department VARCHAR(50) NOT NULL,
+    title VARCHAR(50) NOT NULL,
     joined TIMESTAMP NOT NULL
 );
 
