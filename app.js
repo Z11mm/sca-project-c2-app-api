@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
@@ -8,6 +9,7 @@ const signup = require("./controllers/signup");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
+const auth = require("./controllers/authorization");
 
 const PORT = process.env.PORT || 3000;
 
@@ -32,11 +34,11 @@ app.post("/signin", signin.signInAuthentication(dB, bcrypt));
 
 app.post("/signup", signup.handleSignUp(dB, bcrypt));
 
-app.get("/profile/:id", profile.getProfile(dB));
-app.post("/profile/:id", profile.updateProfile(dB));
+app.get("/profile/:id", auth.requireAuth, profile.getProfile(dB));
+app.post("/profile/:id", auth.requireAuth, profile.updateProfile(dB));
 
-app.put("/image", image.setImageEntries(dB));
-app.post("/imageurl", image.handleApiCall());
+app.put("/image", auth.requireAuth, image.setImageEntries(dB));
+app.post("/imageurl", auth.requireAuth, image.handleApiCall());
 
 app.listen(3000, () => {
   console.log("app is running");

@@ -1,11 +1,15 @@
 version: '3.8'
 
 services:
+
   # Backend api
   api:
     build: .
+    depends_on:
+      - postgres
+      - redis
     environment:
-      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp,
+      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
       REDIS_URI: redis://redis:6379
     ports:
       - "3000:3000"
@@ -16,12 +20,14 @@ services:
   postgres:
     build: ./postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test
       POSTGRES_DB: faceapp
       POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   # Redis dB
   redis:
@@ -29,4 +35,5 @@ services:
     ports: 
       - "6379:6379"
 
-
+volumes:
+  pgdata:
