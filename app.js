@@ -9,7 +9,6 @@ const signup = require("./controllers/signup");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
-const auth = require("./controllers/authorization");
 const meeting = require("./controllers/meeting");
 
 const PORT = process.env.PORT || 3000;
@@ -31,15 +30,15 @@ app.get("/", (req, res) => {
   res.send(dB.users);
 });
 
-app.post("/signin", signin.signInAuthentication(dB, bcrypt));
+app.post("/signin", signin.handleSignIn(dB, bcrypt));
 
 app.post("/signup", signup.handleSignUp(dB, bcrypt));
 
-app.get("/profile/:id", auth.requireAuth, profile.getProfile(dB));
-app.post("/profile/:id", auth.requireAuth, profile.updateProfile(dB));
+app.get("/profile/:id", profile.getProfile(dB));
+app.post("/profile/:id", profile.updateProfile(dB));
 
-app.put("/image", auth.requireAuth, image.setImageEntries(dB));
-app.post("/imageurl", auth.requireAuth, image.handleApiCall());
+app.put("/image", image.setImageEntries(dB));
+app.post("/imageurl", image.handleApiCall());
 
 app.get('/meeting', meeting.getMeetings(dB));
 

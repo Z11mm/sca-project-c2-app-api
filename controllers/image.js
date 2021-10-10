@@ -21,8 +21,7 @@ const handleApiCall = () => (req, res) => {
       console.log(data);
       res.json(data);
     })
-    // .catch((err) => res.status(400).json("unable to handle api call"));
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(400).json("unable to handle api call"));
 };
 
 const setImageEntries = dB => (req, res) => {
