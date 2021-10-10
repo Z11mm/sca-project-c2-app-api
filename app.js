@@ -10,6 +10,7 @@ const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 const auth = require("./controllers/authorization");
+const meeting = require("./controllers/meeting");
 
 const PORT = process.env.PORT || 3000;
 
@@ -39,6 +40,8 @@ app.post("/profile/:id", auth.requireAuth, profile.updateProfile(dB));
 
 app.put("/image", auth.requireAuth, image.setImageEntries(dB));
 app.post("/imageurl", auth.requireAuth, image.handleApiCall());
+
+app.get('/meeting', meeting.getMeetings(dB));
 
 app.listen(3000, () => {
   console.log("app is running");
