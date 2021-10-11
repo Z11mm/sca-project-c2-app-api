@@ -6,7 +6,7 @@ CREATE TABLE users(
     email VARCHAR(50) UNIQUE NOT NULL,
     department VARCHAR(50) NOT NULL,
     title VARCHAR(50) NOT NULL,
-    joined TIMESTAMP NOT NULL
+    joined TIMESTAMP NOT NULL,
 );
 
 COMMIT;
