@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon -L -P 4000 app.js",
     "test": "mocha --recursive"
   },
   "author": "",

@@ -5,7 +5,7 @@ CREATE TABLE meetings(
     event_name text UNIQUE NOT NULL,
     no_of_people BIGINT NOT NULL,
     location text NOT NULL,
-    date_recorded TIMESTAMP NOT NULL,
+    date_recorded TIMESTAMP NOT NULL DEFAULT NOW(),
     user_id INT REFERENCES users(id)
 );
 
