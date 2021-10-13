@@ -41,7 +41,7 @@ app.post("/signin", signin.handleSignIn(dB, bcrypt));
 app.post("/signup", signup.handleSignUp(dB, bcrypt));
 
 app.get("/profile/:id", profile.getProfile(dB));
-app.post("/profile/:id", profile.updateProfile(dB));
+app.put("/profile/:id", profile.updateProfile(dB));
 
 app.put("/image", image.setImageEntries(dB));
 app.post("/imageurl", image.handleApiCall());
@@ -86,20 +86,30 @@ app.get("/profile/:id/meeting", async (req, res) => {
   }
 });
 
-// app.get("/meeting/:id", (req, res) => {
-//   const { id } = req.params;
-//   // const { event_name, no_of_people } = req.params;
-//   let found = false;
-//   database.meetings.forEach((meeting) => {
-//     if (meeting.id === id) {
-//       found = true;
-//       return res.json(meeting);
-//     }
-//   });
-//   if (!found) {
-//     res.status(400).json("not found");
-//   }
-// });
+// Delete meeting by id
+app.delete("/meeting/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const targetMeeting = await dB("meetings").where({ id: id }).returning('*').del();
+    return res.status(200).json(targetMeeting)
+  } catch (err) {
+    return res.status(404).json({ message: "Error deleting meeting" });
+  }
+});
+
+app.get("/meeting/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const targetMeeting = await dB("meetings").where({ id: id }).returning('*');
+    return res.status(200).json(targetMeeting)
+  } catch (err) {
+    return res.status(404).json({ message: "Meeting not found" });
+  }
+});
+
+
 
 app.listen(3000, () => {
   console.log("app is running");

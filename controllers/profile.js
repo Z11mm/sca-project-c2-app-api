@@ -17,19 +17,22 @@ const getProfile = (dB) => (req, res) => {
 const updateProfile = (dB) => (req, res) => {
   const { id } = req.params;
   const { name, department, title } = req.body.formInput;
-  console.log(id)
 
-  dB('users').where({ id }).update({ name, department, title }).returning('*').then(resp => {
-    console.log(resp)
-    if (resp) {
-      res.json('success')
-    } else {
-      res.status(400).json('Unable to update')
-    }
-  }).catch(err => res.status(400).json('error updating user'))
+  dB("users")
+    .where({ id })
+    .update({ name, department, title })
+    .returning("*")
+    .then((data) => {
+      if (data) {
+        res.json({ message: "Profile updated", data });
+      } else {
+        res.status(400).json("Unable to update");
+      }
+    })
+    .catch((err) => res.status(400).json("error updating user"));
 };
 
 module.exports = {
   getProfile: getProfile,
-  updateProfile: updateProfile
+  updateProfile: updateProfile,
 };

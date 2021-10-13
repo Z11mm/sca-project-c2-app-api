@@ -38,6 +38,47 @@ describe("SignUp API", function () {
           );
         });
       });
+      describe("Create duplicate user error", function () {
+        const payload = {
+          name: "Ciroma",
+          email: "ciroma@ciroma.com",
+          password: 123,
+        };
+
+        it("Status", (done) => {
+          request.post(
+            `${TESTING_URL}/signup`,
+            {
+              json: payload,
+            },
+            (_, response) => {
+              expect(response.statusCode).to.equal(400);
+              done();
+            }
+          );
+        });
+      })
     });
+    
+    describe('Create user successful', function () {
+      const payload = {
+        name: "Ciroma",
+        email: "ciroma@ciroma.com",
+        password: 123,
+      };
+
+      it("Status", (done) => {
+        request.post(
+          `${TESTING_URL}/signup`,
+          {
+            json: payload
+          },
+          (_, response) => {
+            expect(response.statusCode).to.equal(200);
+            done();
+          }
+        );
+      });
+    })
   });
 });

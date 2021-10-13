@@ -22,7 +22,7 @@ const handleSignUp = (dB, bcrypt) => (req, res) => {
             joined: new Date()
           })
           .then(user => {
-            res.json(user[0]);
+            res.status(200).json(user[0]);
           });
       })
       .then(trx.commit)
