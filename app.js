@@ -1,4 +1,7 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
@@ -11,7 +14,7 @@ const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 const meeting = require("./controllers/meeting");
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const dB = knex({
   client: "pg",
@@ -111,6 +114,8 @@ app.get("/meeting/:id", async (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("app is running");
 });
+
+module.exports = app;
