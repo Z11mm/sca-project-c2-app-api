@@ -5,11 +5,7 @@ const getProfile = (dB) => (req, res) => {
     .from("users")
     .where({ id })
     .then((user) => {
-      if (user.length) {
-        res.json(user[0]);
-      } else {
-        res.status(404).json("Not found");
-      }
+      res.status(200).json(user[0]);
     })
     .catch((err) => res.status(400).json("Error getting user"));
 };

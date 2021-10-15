@@ -1,25 +1,19 @@
-// process.env.NODE_ENV = 'test';
-
-// Dependencies
 const expect = require("chai").expect;
 const request = require("request");
 const { TESTING_URL } = require("../../constants/tests");
 
-
-
-describe("SignUp API", function () {
-  describe("Create user", function () {
-    describe("Create user validation error", function () {
+describe("/POST signin", function () {
+  describe("User can sign in with user details", function () {
+    describe("Create user login validation error", function () {
       describe("Create user missing field", function () {
         const payload = {
-          name: "",
           email: "ciroma@ciroma.com",
-          password: 123,
+          password: "",
         };
 
         it("Status", (done) => {
           request.post(
-            `${TESTING_URL}/signup`,
+            `${TESTING_URL}/signin`,
             {
               json: payload,
             },
@@ -32,7 +26,7 @@ describe("SignUp API", function () {
 
         it("Message", (done) => {
           request.post(
-            `${TESTING_URL}/signup`,
+            `${TESTING_URL}/signin`,
             {
               json: payload,
             },
@@ -43,16 +37,16 @@ describe("SignUp API", function () {
           );
         });
       });
-      describe("Create duplicate user error", function () {
+
+      describe("Create user wrong credentials", function () {
         const payload = {
-          name: "Ciroma",
           email: "ciroma@ciroma.com",
           password: 123,
         };
 
         it("Status", (done) => {
           request.post(
-            `${TESTING_URL}/signup`,
+            `${TESTING_URL}/signin`,
             {
               json: payload,
             },
@@ -62,28 +56,39 @@ describe("SignUp API", function () {
             }
           );
         });
-      })
+
+        it("Message", (done) => {
+          request.post(
+            `${TESTING_URL}/signin`,
+            {
+              json: payload,
+            },
+            (_, response) => {
+              expect(response.body).to.equal("wrong credentials");
+              done();
+            }
+          );
+        });
+      });
     });
 
-    // describe('Create user successful', function () {
-    //   const payload = {
-    //     name: "Ade",
-    //     email: "ade@ade.com",
-    //     password: 123,
-    //   };
-
-    //   it("Status", (done) => {
-    //     request.post(
-    //       `${TESTING_URL}/signup`,
-    //       {
-    //         json: payload
-    //       },
-    //       (_, response) => {
-    //         expect(response.statusCode).to.equal(200);
-    //         done();
-    //       }
-    //     );
-    //   });
-    // })
+    describe("Login successful", function () {
+      const payload = {
+        email: "ciroma@ciroma.com",
+        password: "123",
+      };
+      it("Should return user details", (done) => {
+        request.post(
+          `${TESTING_URL}/signin`,
+          {
+            json: payload,
+          },
+          (_, response) => {
+            expect(response.body).to.be.an("object");
+            done();
+          }
+        );
+      });
+    });
   });
 });

@@ -18,13 +18,13 @@ services:
   postgres:
     build: ./postgres
     environment:
-      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
-      POSTGRES_DB: process.env.POSTGRES_DB
-      POSTGRES_HOST: process.env.POSTGRES_HOST
-      POSTGRES_USER: process.env.POSTGRES_USER
-      POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD
+      # POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
+      POSTGRES_DB: faceapp
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
     ports:
-      - "2345:5432"
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 

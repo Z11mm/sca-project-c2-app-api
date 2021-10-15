@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const express = require("express");
 const bcrypt = require("bcrypt-nodejs");
@@ -35,7 +33,7 @@ app.get("/", async (req, res) => {
     const users = await dB("users");
     return res.status(200).json(users);
   } catch (err) {
-    return res.status(500).json({ message: "Error getting users" });
+    return res.status(404).json({ message: "Error getting users" });
   }
 });
 
@@ -94,8 +92,11 @@ app.delete("/meeting/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const targetMeeting = await dB("meetings").where({ id: id }).returning('*').del();
-    return res.status(200).json(targetMeeting)
+    const targetMeeting = await dB("meetings")
+      .where({ id: id })
+      .returning("*")
+      .del();
+    return res.status(200).json(targetMeeting);
   } catch (err) {
     return res.status(404).json({ message: "Error deleting meeting" });
   }
@@ -105,14 +106,12 @@ app.get("/meeting/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const targetMeeting = await dB("meetings").where({ id: id }).returning('*');
-    return res.status(200).json(targetMeeting)
+    const targetMeeting = await dB("meetings").where({ id: id }).returning("*");
+    return res.status(200).json(targetMeeting);
   } catch (err) {
     return res.status(404).json({ message: "Meeting not found" });
   }
 });
-
-
 
 app.listen(port, () => {
   console.log("app is running");

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon -L -P 4000 app.js",
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "test-script": "chmod +x ./bin/test.sh && NODE_ENV=test ./bin/test.sh"
   },
   "author": "",
   "license": "ISC",
