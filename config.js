@@ -9,5 +9,5 @@ module.exports = {
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     uri: process.env.DB_URI,
-  }
+  },
 };
