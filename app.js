@@ -15,7 +15,6 @@ const image = require("./controllers/image");
 const meeting = require("./controllers/meeting");
 
 const port = process.env.PORT || 3000;
-console.log(db.uri)
 
 const dB = knex({
   client: "pg",

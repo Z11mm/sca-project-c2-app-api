@@ -67,8 +67,8 @@ describe("SignUp API", function () {
 
     // describe('Create user successful', function () {
     //   const payload = {
-    //     name: "Ade",
-    //     email: "ade@ade.com",
+    //     name: "Ciroma",
+    //     email: "ciroma@ciroma.com",
     //     password: 123,
     //   };
 
