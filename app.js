@@ -14,7 +14,7 @@ const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 const meeting = require("./controllers/meeting");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const dB = knex({
   client: "pg",
@@ -116,7 +116,7 @@ app.get("/meeting/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("app is running");
+  console.log(`app is listening on port ${port} in ${process.env.NODE_ENV} environment `);
 });
 
 module.exports = app;
