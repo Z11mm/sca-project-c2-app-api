@@ -7,8 +7,8 @@ services:
     build: .
     depends_on:
       - postgres
-    environment:
-      POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
+    env_file:
+      - ./.env
     ports:
       - "3000:3000"
     volumes:
@@ -17,12 +17,10 @@ services:
   # Postgres dB
   postgres:
     build: ./postgres
-    environment:
-      # POSTGRES_URI: postgres://postgres:test@postgres:5432/faceapp
-      POSTGRES_DB: faceapp
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test
+
+    # specify file with environment variables
+    env_file:
+      - ./.env
     ports:
       - "5432:5432"
     volumes:

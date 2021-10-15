@@ -1,5 +1,7 @@
-require("dotenv").config();
+// from dotenv config file
+const { db } = require("./config");
 
+// dependencies
 const express = require("express");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
@@ -13,10 +15,11 @@ const image = require("./controllers/image");
 const meeting = require("./controllers/meeting");
 
 const port = process.env.PORT || 3000;
+console.log(db.uri)
 
 const dB = knex({
   client: "pg",
-  connection: process.env.POSTGRES_URI,
+  connection: db.uri
 });
 
 const app = express();
