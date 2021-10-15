@@ -1,4 +1,3 @@
-// process.env.NODE_ENV = 'test';
 
 // Dependencies
 const expect = require("chai").expect;

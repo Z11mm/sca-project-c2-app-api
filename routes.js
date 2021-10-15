@@ -15,7 +15,6 @@ const image = require("./controllers/image");
 const meeting = require("./controllers/meeting");
 
 
-
 const dB = knex({
   client: "pg",
   connection: db.uri
