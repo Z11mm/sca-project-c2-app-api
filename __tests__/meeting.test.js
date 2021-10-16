@@ -1,58 +1,43 @@
 const expect = require("chai").expect;
-const request = require("request");
+const createServer = require("../server");
+const request = require("supertest");
 const { TESTING_URL } = require("../constants/tests");
 
-describe("Meeting API", function () {
-    describe('Modifies meeting by id', function () {
-      describe("Get meeting by id", function () {
-        const id = 1;
-        it("Status", (done) => {
-          request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-            expect(response.statusCode).to.equal(200);
-            done();
-          });
-        });
-        it("Content", (done) => {
-          request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-            const body = JSON.parse(response.body);
-            expect(body).to.be.an("object");
-            done();
-          });
-        });
-      });
-      describe("Get meeting by id", function () {
-        const id = 1;
-        it("Status", (done) => {
-          request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-            expect(response.statusCode).to.equal(200);
-            done();
-          });
-        });
-        it("Content", (done) => {
-          request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-            const body = JSON.parse(response.body);
-            expect(body).to.be.an("object");
-            done();
-          });
-        });
-      });
+const app = request.agent(`${TESTING_URL}`);
 
-      
-    })
-    describe("Error getting user", function () {
-      const id = 16548941164846;
-      it("Message", (done) => {
-        request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-          const body = JSON.parse(response.body);
-          expect(body).to.equal("Error getting user");
-          done();
-        });
+describe("Meeting API", () => {
+  describe("Modifies meeting by id", () => {
+    describe("Get meeting by id", () => {
+      const id = 1;
+      test("Status", async () => {
+        const res = await app.get(`/profile/${id}/meeting`);
+        expect(res.statusCode).to.equal(200);
       });
-      it("Status", (done) => {
-        request.get(`${TESTING_URL}/profile/${id}`, (_, response) => {
-          expect(response.statusCode).to.equal(400);
-          done();
-        });
+      test("Content", async () => {
+        const res = await app.get(`/profile/${id}/meeting`);
+        expect(res.body).to.be.an("array").that.is.empty;
       });
     });
+    describe("Get all meetings", () => {
+      test("Status", async () => {
+        const res = await app.get("/meeting");
+        expect(res.statusCode).to.equal(200);
+      });
+      test("Content", async () => {
+        const res = await app.get("/meeting");
+        expect(res.body).to.be.an("array");
+      });
+    });
+  });
+  describe("Error getting meeting by id", function () {
+    const id = 16548941164846;
+    test("Message", async () => {
+      const res = await app.get(`/profile/${id}/meeting`);
+      expect(res.body.message).to.equal("Error getting meeting");
+    });
+    test("Status", async () => {
+      const res = await app.get(`/profile/${id}/meeting`);
+      expect(res.statusCode).to.equal(404);
+    });
+  });
 });

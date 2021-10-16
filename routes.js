@@ -71,13 +71,11 @@ router.post("/profile/:id/meeting", (req, res) => {
 // Get meetings by user id
 router.get("/profile/:id/meeting", async (req, res) => {
   const { id } = req.params;
-  // console.log(id)
   try {
     const userMeetings = await dB("meetings").where({ user_id: id });
-    // console.log(userMeetings)
     return res.status(200).json(userMeetings);
   } catch (err) {
-    return res.status(404).json({ message: "Error getting meetings" });
+    return res.status(404).json({ message: "Error getting meeting" });
   }
 });
 
