@@ -10,11 +10,11 @@ docker-compose up -d postgres
 WAIT_FOR_PG_ISREADY='while ! pg_isready --quiet; do sleep 5; done;'
 
 # access db terminal and run command
-docker-compose exec postgres bash -c '$WAIT_FOR_PG_ISREADY'
+docker exec scacloudschool-project-api_postgres_1 bash -c '$WAIT_FOR_PG_ISREADY'
 
 # run tests
 echo 'running all tests'
-mocha --recursive --timeout 10000 --exit
+jest --timeout 10000 --exit
 
 echo 'tearing down db'
 docker compose down -v --remove-orphans
