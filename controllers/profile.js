@@ -14,6 +14,10 @@ const updateProfile = (dB) => (req, res) => {
   const { id } = req.params;
   const { name, department, title } = req.body.formInput;
 
+  if (!name || !department || !title) {
+    return res.status(400).json("incorrect form submission");
+  }
+
   dB("users")
     .where({ id })
     .update({ name, department, title })
