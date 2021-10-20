@@ -8,9 +8,9 @@ services:
     depends_on:
       - postgres
     env_file:
-      - ./.env
+      - ./.env.dev.local
     ports:
-      - "3000:3000"
+      - "3002:3002"
     volumes:
       - .:/usr/src/faceapp-api
 
@@ -20,7 +20,7 @@ services:
 
     # specify file with environment variables
     env_file:
-      - ./.env
+      - ./.env.dev.local
     ports:
       - "5432:5432"
     volumes:
