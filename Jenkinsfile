@@ -5,7 +5,7 @@ pipeline {
   environment {
     PROJECT_ID = "sca-cloud-school-c2"
     CLUSTER_NAME = "sca-project-cluster"
-    LOCATION = "us-central1-c"
+    LOCATION = "us-central1-f"
     CREDENTIALS_ID = "kubernetes"
   }
 
