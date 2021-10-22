@@ -6,6 +6,7 @@ data:
   apiKey: YTQ1YzUyZmJiNDJmNGY2ODg5MmVhYTIzODU2OTkwMmM=
 
 ---
+  
 apiVersion: v1
 kind: Secret
 metadata:
