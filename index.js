@@ -8,6 +8,6 @@ const port = config.port;
 
 server.listen(port, () => {
     console.log(
-      `app is listening on port ${port} in ${process.env.NODE_ENV} environment `, env
+      `app is listening on port ${port} in ${process.env.NODE_ENV} environment `
     );
 })

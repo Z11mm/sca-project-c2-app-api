@@ -4,8 +4,12 @@ FROM node:14.18-alpine
 
 WORKDIR /usr/src/faceapp-api
 
-COPY . .
+COPY package.json .
 
 RUN npm install
 
-CMD ["npm", "start"]
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "prod"]

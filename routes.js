@@ -17,18 +17,19 @@ const meeting = require("./controllers/meeting");
 
 const dB = knex({
   client: "pg",
+  // connection: {
+  //   host: db.host,
+  //   user: db.user,
+  //   password: db.password,
+  //   database: db.name
+  // },
   connection: db.uri
 });
 
 
 // Routes
 router.get("/", async (req, res) => {
-  try {
-    const users = await dB("users");
-    return res.status(200).json(users);
-  } catch (err) {
-    return res.status(404).json({ message: "Error getting users" });
-  }
+  res.send('Hello there!')
 });
 
 router.post("/signin", signin.handleSignIn(dB, bcrypt));
