@@ -73,7 +73,7 @@ pipeline {
           withCredentials([string(credentialsId: 'DockerHub', variable: 'DockerHub')]) {
             sh '''
             docker login -u masterziii -p ${DockerHub}
-            docker image push masterziii/sca-project-backend_api:latest
+            docker image push masterziii/sca-project-backend:latest
             '''
           }
         }
