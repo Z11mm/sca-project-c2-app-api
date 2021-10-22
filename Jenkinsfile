@@ -7,6 +7,7 @@ pipeline {
     CLUSTER_NAME = "sca-project-cluster"
     LOCATION = "us-central1-f"
     CREDENTIALS_ID = "kubernetes"
+    BUILD_ID = "${env.BUILD_ID}"
   }
 
   stages {
@@ -73,7 +74,8 @@ pipeline {
           withCredentials([string(credentialsId: 'DockerHub', variable: 'DockerHub')]) {
             sh '''
             docker login -u masterziii -p ${DockerHub}
-            docker image push masterziii/sca-project-backend:latest
+            docker tag masterziii/sca-project-backend:latest masterziii/sca-project-backend:$BUILD_ID
+            docker image push masterziii/sca-project-backend:$BUILD_ID
             '''
           }
         }
@@ -85,7 +87,7 @@ pipeline {
         echo 'Deploying to GKE'
         sh 'ls -ltr'
         // sh "sed -i 's/masterziii/sca-project-backend:latest/masterziii/sca-project-backend:${env.BUILD_ID}/g' api_deployment.yml"
-        // sh "sed -i 's/latest/${env.BUILD_ID}/g' api_deployment.yml"
+        sh "sed -i 's/latest/$BUILD_ID/g' api_deployment.yml"
         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'api_deployment.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
       
       }

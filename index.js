@@ -3,8 +3,7 @@ const createServer = require('./server')
 const config = require('./config')
 
 const server = createServer();
-const env = config.environmentToExport;
-const port = config.port;
+const port = config.port || 3000;
 
 server.listen(port, () => {
     console.log(

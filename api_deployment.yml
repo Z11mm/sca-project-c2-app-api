@@ -6,7 +6,7 @@ data:
   apiKey: YTQ1YzUyZmJiNDJmNGY2ODg5MmVhYTIzODU2OTkwMmM=
 
 ---
-  
+
 apiVersion: v1
 kind: Secret
 metadata:
@@ -56,3 +56,13 @@ spec:
               secretKeyRef:
                 name: api-secret
                 key: apiKey
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: cloud-db-credentials
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: cloud-db-credentials
+                key: password
