@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+apiVersion: v1
+kind: Service
+metadata:
+  name: faceapp-api
+spec:
+  selector:
+    app: faceapp-api
+  ports: 
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+
+---
+
+kind: Deployment
+metadata:
+  name: faceapp-api
+
+spec:
+  selector:
+    matchLabels:
+      app: faceapp-api
+  replicas: 2
+  template:
+    metadata:
+      labels: 
+        app: faceapp-api
+    spec:
+      containers:
+      - name: faceapp-api
+        image:
+        ports:
+        - containerPort: 3000
+          
