@@ -28,8 +28,8 @@ const dB = knex({
 
 
 // Routes
-router.get("/", async (req, res) => {
-  res.send('Hello there!')
+router.get("/api", async (req, res) => {
+  res.send('Hello there')
 });
 
 router.post("/signin", signin.handleSignIn(dB, bcrypt));
