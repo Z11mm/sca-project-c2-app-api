@@ -5,8 +5,14 @@ metadata:
 data:
   apiKey: YTQ1YzUyZmJiNDJmNGY2ODg5MmVhYTIzODU2OTkwMmM=
 
-
-
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloud-db-credentials
+data:
+  username: cGd1c2Vy
+  password: dGVzdA==
 
 ---
 apiVersion: v1
