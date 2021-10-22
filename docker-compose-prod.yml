@@ -4,6 +4,7 @@ services:
 
   # Backend api
   api:
+    image: masterziii/sca-project-backend
     build: .
     # env_file:
     #   - ./.env.prod.local
