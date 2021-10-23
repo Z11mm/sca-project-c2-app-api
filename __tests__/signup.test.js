@@ -19,7 +19,7 @@ describe("SignUp API", () => {
         };
 
         test("Status", async () => {
-          const res = await app.post('/signup').send(payload);
+          const res = await app.post('/api/signup').send(payload);
 
           expect(res.statusCode).to.equal(400);
           
@@ -28,7 +28,7 @@ describe("SignUp API", () => {
       
 
         test("Message", async () => {
-          const res = await app.post('/signup').send(payload);
+          const res = await app.post('/api/signup').send(payload);
           
           expect(res.body).to.equal("incorrect form submission");
         }
@@ -44,7 +44,7 @@ describe("SignUp API", () => {
         };
 
         test("Status", async () => {
-          const res = await app.post('/signup').send(payload);
+          const res = await app.post('/api/signup').send(payload);
             
           expect(res.statusCode).to.equal(400);
         });
@@ -58,7 +58,7 @@ describe("SignUp API", () => {
       //   };
 
       //   test("Status", async () => {
-      //     const res = await app.post('/signup').send(payload);
+      //     const res = await app.post('/api/signup').send(payload);
             
       //     expect(res.statusCode).to.equal(200);
       //   });

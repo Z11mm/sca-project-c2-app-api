@@ -17,13 +17,13 @@ describe("/POST signin", () => {
         };
 
         test("Status", async () => {
-          const res = await app.post("/signin").send(payload);
+          const res = await app.post("/api/signin").send(payload);
 
           expect(res.statusCode).to.equal(400);
         });
 
         test("Message", async () => {
-          const res = await app.post("/signin").send(payload);
+          const res = await app.post("/api/signin").send(payload);
 
           expect(res.body).to.equal("incorrect form submission");
         });
@@ -37,13 +37,13 @@ describe("/POST signin", () => {
       };
 
       test("Status", async () => {
-        const res = await app.post("/signin").send(payload);
+        const res = await app.post("/api/signin").send(payload);
 
         expect(res.statusCode).to.equal(400);
       });
 
       test("Message", async () => {
-        const res = await app.post("/signin").send(payload);
+        const res = await app.post("/api/signin").send(payload);
 
         expect(res.body).to.equal("wrong credentials");
       });
@@ -56,12 +56,12 @@ describe("/POST signin", () => {
       password: "123"
     };
     test("Should return user details", async () => {
-      const res = await app.post("/signin").send(payload);
+      const res = await app.post("/api/signin").send(payload);
 
       expect(res.body).to.be.an("object");
     });
     test("Status", async () => {
-      const res = await app.post("/signin").send(payload);
+      const res = await app.post("/api/signin").send(payload);
 
       expect(res.statusCode).to.equal(200);
     });

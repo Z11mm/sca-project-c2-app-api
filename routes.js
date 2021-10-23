@@ -32,20 +32,20 @@ router.get("/api", async (req, res) => {
   res.send('Hello there')
 });
 
-router.post("/signin", signin.handleSignIn(dB, bcrypt));
+router.post("/api/signin", signin.handleSignIn(dB, bcrypt));
 
-router.post("/signup", signup.handleSignUp(dB, bcrypt));
+router.post("/api/signup", signup.handleSignUp(dB, bcrypt));
 
-router.get("/profile/:id", profile.getProfile(dB));
-router.put("/profile/:id", profile.updateProfile(dB));
+router.get("/api/profile/:id", profile.getProfile(dB));
+router.put("/api/profile/:id", profile.updateProfile(dB));
 
-router.put("/image", image.setImageEntries(dB));
-router.post("/imageurl", image.handleApiCall());
+router.put("/api/image", image.setImageEntries(dB));
+router.post("/api/imageurl", image.handleApiCall());
 
-router.get("/meeting", meeting.getAllMeetings(dB));
+router.get("/api/meeting", meeting.getAllMeetings(dB));
 
 // Add meeting by user id
-router.post("/profile/:id/meeting", (req, res) => {
+router.post("/api/profile/:id/meeting", (req, res) => {
   const { id } = req.params;
   const { event_name, no_of_people, location } = req.body.formInput;
 
@@ -70,7 +70,7 @@ router.post("/profile/:id/meeting", (req, res) => {
 });
 
 // Get meetings by user id
-router.get("/profile/:id/meeting", async (req, res) => {
+router.get("/api/profile/:id/meeting", async (req, res) => {
   const { id } = req.params;
   try {
     const userMeetings = await dB("meetings").where({ user_id: id });
@@ -81,7 +81,7 @@ router.get("/profile/:id/meeting", async (req, res) => {
 });
 
 // Delete meeting by id
-router.delete("/meeting/:id", async (req, res) => {
+router.delete("/api/meeting/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -95,7 +95,7 @@ router.delete("/meeting/:id", async (req, res) => {
   }
 });
 
-router.get("/meeting/:id", async (req, res) => {
+router.get("/api/meeting/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
