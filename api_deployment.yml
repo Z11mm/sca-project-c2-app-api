@@ -15,6 +15,7 @@ data:
   username: cGd1c2Vy
   password: dGVzdA==
   dbname: ZmFjZWFwcC1kYg==
+  dburi: cG9zdGdyZXM6Ly9wZ3VzZXI6dGVzdEAxMjcuMC4wLjE6NTQzMi9mYWNlYXBwLWRi
 
 ---
 
@@ -73,6 +74,11 @@ spec:
               secretKeyRef:
                 name: cloud-db-credentials
                 key: dbname
+          - name: DB_URI
+            valueFrom:
+              secretKeyRef:
+                name: cloud-db-credentials
+                key: dburi
 
       - name: cloud-sql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.19.1
