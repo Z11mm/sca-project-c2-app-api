@@ -25,7 +25,7 @@ const dB = knex({
   // },
   connection: db.uri
 });
-
+console.log(db.uri)
 
 // Routes
 router.get("/api", async (req, res) => {
