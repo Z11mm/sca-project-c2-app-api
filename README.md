@@ -118,12 +118,14 @@ To install Ansible, follow these steps:
         - Node
         - Google Kubernetes Engine
         - Docker
+        - Slack Notifications
 
 ## Continuous Integration (CI pipeline)  
 A push to the repository triggers the CI/CD script in the Jenkinsfile. The CI portion of the script does the following:
 * Runs `npm run build` to create a build folder.
 * Builds a Docker image using the `docker-compose-prod.yml` file.
 * Pushes the Docker image to DockerHub with a tag version corresponding to the build id.
+* Sends Slack notifications when build starts and if build is successful or build fails.
 
 
 ## Continuous Deployment (CD pipeline)
@@ -131,3 +133,4 @@ A push to the repository triggers the CI/CD script in the Jenkinsfile. The CD po
 * Pulls the Docker image from DockerHub.
 * Replaces the `:latest` tag version within the deployment file with the updated build id.
 * Deploys the application to Google Kubernetes Engine(GKE) using the Jenkins GKE plugin.
+* Sends Slack notifications when build starts and if build is successful or build fails.
