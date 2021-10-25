@@ -29,15 +29,6 @@ pipeline {
       }
     }
 
-    // stage('Build Docker image') {
-    //   steps {
-    //     echo 'Building Docker image'
-    //     script {
-    //       image = docker.build("masterziii/sca-project-backend:${env.BUILD_NUMBER}")
-    //     }
-    //   }
-    // }
-
     stage('Build Docker image') {
       steps {
         echo 'Building image'
@@ -54,18 +45,6 @@ pipeline {
         echo 'Testing application'
       }
     }
-
-    // stage('Push Docker image to DockerHub') {
-    //   steps {
-    //     echo 'Pushing Docker image to DockerHub'
-    //     script {
-    //       withCredentials([string(credentialsId: 'DockerHub', variable: 'DockerHub')]) {
-    //         sh 'docker login -u masterziii -p ${DockerHub}'
-    //       }
-    //       image.push("${env.BUILD_NUMBER}")
-    //     }
-    //   }
-    // }
 
     stage('Push Docker image to DockerHub') {
       steps {
@@ -86,7 +65,6 @@ pipeline {
       steps {
         echo 'Deploying to GKE'
         sh 'ls -ltr'
-        // sh "sed -i 's/masterziii/sca-project-backend:latest/masterziii/sca-project-backend:${env.BUILD_ID}/g' api_deployment.yml"
         sh "sed -i 's/latest/$BUILD_ID/g' api_deployment.yml"
         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'service-acc-key.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'api_deployment.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
@@ -95,10 +73,12 @@ pipeline {
     }
   }
   post {
+    // Send build success notification
     success {
       slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     }
 
+    // Send build failure notification
     failure {
       slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     }

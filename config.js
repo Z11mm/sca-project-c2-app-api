@@ -1,10 +1,5 @@
 // Calls .env file
 
-// if (process.env.NODE_ENV = 'test') {
-//   require("dotenv-flow").config({
-//     path: `./.env.${process.env.NODE_ENV}.local`
-//   });
-// }
 require("dotenv-flow").config();
 
 const environments = {

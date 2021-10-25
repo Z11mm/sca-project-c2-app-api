@@ -17,12 +17,6 @@ const meeting = require("./controllers/meeting");
 
 const dB = knex({
   client: "pg",
-  // connection: {
-  //   host: db.host,
-  //   user: db.user,
-  //   password: db.password,
-  //   database: db.name
-  // },
   connection: db.uri
 });
 console.log(db.uri)
