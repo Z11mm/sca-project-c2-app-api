@@ -40,9 +40,9 @@ In the project directory, you can run:
 
 * In production mode, run `docker-compose -f docker-compose-prod.yml build` to create a production-ready image.
 
-* `npm run test`
+* `npm run test-script`
 
-Launches the test runner in the interactive watch mode.  
+Launches the local test environment with a bash script  .
 
 
 ## Infrastructure Provisioning
