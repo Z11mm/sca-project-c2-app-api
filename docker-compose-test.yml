@@ -14,6 +14,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test
       PORT: 3050
+      CLARIFAI_API: a45c52fbb42f4f68892eaa238569902c
     ports:
       - "3050:3050"
     volumes:
