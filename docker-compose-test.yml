@@ -7,8 +7,8 @@ services:
     build: .
     depends_on:
       - postgres
-    env_file:
-      - ./.env.test.local
+    # env_file:
+    #   - ./.env.test.local
     ports:
       - "3000:3000"
     volumes:
