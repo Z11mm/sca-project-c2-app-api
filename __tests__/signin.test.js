@@ -16,11 +16,6 @@ describe("/POST signin", () => {
           password: "",
         };
 
-        // test("Status", async () => {
-        //   const res = await app.post("/api/signin").send(payload);
-
-        //   expect(res.statusCode).to.equal(400);
-        // });
         test("Status", async () => {
           const res = await app.post("/api/signin").send(payload);
 
@@ -37,7 +32,7 @@ describe("/POST signin", () => {
 
     describe("Create user wrong credentials", () => {
       const payload = {
-        email: "ciroma@ciroma.com",
+        email: "admin@admin.com",
         password: 123,
       };
 
@@ -57,7 +52,7 @@ describe("/POST signin", () => {
 
   describe("Login successful", () => {
     const payload = {
-      email: "ciroma@ciroma.com",
+      email: "admin@admin.com",
       password: "123"
     };
     test("Should return user details", async () => {

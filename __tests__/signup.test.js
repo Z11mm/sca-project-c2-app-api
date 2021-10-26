@@ -10,7 +10,21 @@ const app = request.agent(`${TESTING_URL}`);
 
 describe("SignUp API", () => {
   describe("/POST /signup", () => {
-    describe("Create user validation error", () => {
+    describe("Create user validation", () => {
+      // describe('Create user successful', () => {
+      //   const payload = {
+      //     name: "Ciroma",
+      //     email: "ciroma@ciroma.com",
+      //     password: 123,
+      //   };
+
+      //   test("Status", async () => {
+      //     const res = await app.post('/api/signup').send(payload);
+
+      //     expect(res.statusCode).to.equal(200);
+      //   });
+      // })
+      
       describe("Create user missing field", () => {
         const payload = {
           name: "",
@@ -19,22 +33,17 @@ describe("SignUp API", () => {
         };
 
         test("Status", async () => {
-          const res = await app.post('/api/signup').send(payload);
+          const res = await app.post("/api/signup").send(payload);
 
           expect(res.statusCode).to.equal(400);
-          
-        }
-        );
-      
+        });
 
         test("Message", async () => {
-          const res = await app.post('/api/signup').send(payload);
-          
-          expect(res.body).to.equal("incorrect form submission");
-        }
-        );
-      });
+          const res = await app.post("/api/signup").send(payload);
 
+          expect(res.body).to.equal("incorrect form submission");
+        });
+      });
 
       describe("Create duplicate user error", () => {
         const payload = {
@@ -44,11 +53,11 @@ describe("SignUp API", () => {
         };
 
         test("Status", async () => {
-          const res = await app.post('/api/signup').send(payload);
-            
+          const res = await app.post("/api/signup").send(payload);
+
           expect(res.statusCode).to.equal(400);
         });
-      })
+      });
 
       // describe('Create user successful', () => {
       //   const payload = {
@@ -59,7 +68,7 @@ describe("SignUp API", () => {
 
       //   test("Status", async () => {
       //     const res = await app.post('/api/signup').send(payload);
-            
+
       //     expect(res.statusCode).to.equal(200);
       //   });
       // })
