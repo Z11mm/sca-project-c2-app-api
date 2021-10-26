@@ -24,7 +24,7 @@ describe("SignUp API", () => {
       //     expect(res.statusCode).to.equal(200);
       //   });
       // })
-      
+
       describe("Create user missing field", () => {
         const payload = {
           name: "",
@@ -58,20 +58,6 @@ describe("SignUp API", () => {
           expect(res.statusCode).to.equal(400);
         });
       });
-
-      // describe('Create user successful', () => {
-      //   const payload = {
-      //     name: "Ciroma",
-      //     email: "ciroma@ciroma.com",
-      //     password: 123,
-      //   };
-
-      //   test("Status", async () => {
-      //     const res = await app.post('/api/signup').send(payload);
-
-      //     expect(res.statusCode).to.equal(200);
-      //   });
-      // })
     })
   });
 });
