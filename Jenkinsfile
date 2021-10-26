@@ -43,6 +43,7 @@ pipeline {
     stage('Test application') {
       steps {
         echo 'Testing application'
+        sh 'npm run test-script'
       }
     }
 

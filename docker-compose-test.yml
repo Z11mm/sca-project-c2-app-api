@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+
+  # Backend api
+  api:
+    build: .
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env.test.local
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/faceapp-api
+
+  # Postgres dB
+  postgres:
+    build: ./postgres
+
+    # specify file with environment variables
+    env_file:
+      - ./.env.test.local
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

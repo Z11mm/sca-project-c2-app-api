@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.06% </span>
+                <span class="strong">60.41% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/47</span>
+                <span class='fraction'>29/48</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>1/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.06% </span>
+                <span class="strong">60.41% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/47</span>
+                <span class='fraction'>29/48</span>
             </div>
         
             
@@ -161,13 +161,7 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,13 +182,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -240,12 +228,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -296,15 +284,9 @@ const meeting = require("./controllers/meeting");
 &nbsp;
 const dB = knex({
   client: "pg",
-  // connection: {
-  //   host: db.host,
-  //   user: db.user,
-  //   password: db.password,
-  //   database: db.name
-  // },
   connection: db.uri
 });
-&nbsp;
+console.log(db.uri)
 &nbsp;
 // Routes
 router.get("/api", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
@@ -349,13 +331,13 @@ router.post("/api/profile/:id/meeting", <span class="fstat-no" title="function n
 });
 &nbsp;
 // Get meetings by user id
-router.get("/api/profile/:id/meeting", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const userMeetings = <span class="cstat-no" title="statement not covered" >await dB("meetings").where({ user_id: id });</span>
+router.get("/api/profile/:id/meeting", async (req, res) =&gt; {
+  const { id } = req.params;
+  try {
+    const userMeetings = await dB("meetings").where({ user_id: id });
 <span class="cstat-no" title="statement not covered" >    return res.status(200).json(userMeetings);</span>
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    return res.status(404).json({ message: "Error getting meeting" });</span>
+    return res.status(404).json({ message: "Error getting meeting" });
   }
 });
 &nbsp;
@@ -394,7 +376,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Oct 22 2021 20:16:36 GMT+0100 (West Africa Standard Time)
+                at Tue Oct 26 2021 08:01:07 GMT+0100 (West Africa Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
