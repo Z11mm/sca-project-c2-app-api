@@ -11,7 +11,7 @@ echo 'postgres not yet ready to accept connections'
 WAIT_FOR_PG_ISREADY='while ! pg_isready --quiet; do sleep 10; done;'
 
 # access db terminal and run command
-docker exec scacloudschool-project-api_postgres_1 bash -c '$WAIT_FOR_PG_ISREADY'
+docker exec sca-project-backend_postgres_1 bash -c '$WAIT_FOR_PG_ISREADY'
 echo 'postgres ready to accept connections'
 
 # run tests
