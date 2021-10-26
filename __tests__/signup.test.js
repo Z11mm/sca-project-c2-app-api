@@ -11,19 +11,20 @@ const app = request.agent(`${TESTING_URL}`);
 describe("SignUp API", () => {
   describe("/POST /signup", () => {
     describe("Create user validation", () => {
-      // describe('Create user successful', () => {
-      //   const payload = {
-      //     name: "Ciroma",
-      //     email: "ciroma@ciroma.com",
-      //     password: 123,
-      //   };
+      
+      describe('Create user successful', () => {
+        const payload = {
+          name: "Ciroma",
+          email: "ciroma@ciroma.com",
+          password: 123,
+        };
 
-      //   test("Status", async () => {
-      //     const res = await app.post('/api/signup').send(payload);
+        test("Status", async () => {
+          const res = await app.post('/api/signup').send(payload);
 
-      //     expect(res.statusCode).to.equal(200);
-      //   });
-      // })
+          expect(res.statusCode).to.equal(200);
+        });
+      })
 
       describe("Create user missing field", () => {
         const payload = {
