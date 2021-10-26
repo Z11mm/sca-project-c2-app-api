@@ -7,6 +7,6 @@ const port = config.port || 3000;
 
 server.listen(port, () => {
     console.log(
-      `app is listening on port ${port} in ${process.env.NODE_ENV} environment `
+      `app is listening on port ${port}... `
     );
 })

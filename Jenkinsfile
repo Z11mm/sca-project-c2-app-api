@@ -43,7 +43,10 @@ pipeline {
     stage('Test application') {
       steps {
         echo 'Testing application'
-        sh 'npm run test-script'
+        sh '''
+        npm run test-script
+        docker-compose -f docker-compose-test.yml down -v --remove-orphans
+        '''
       }
     }
 

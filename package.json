@@ -7,7 +7,7 @@
     "start": "NODE_ENV=dev nodemon -L -P 4000 index.js",
     "test": "jest",
     "test-script": "chmod +x ./bin/test.sh && NODE_ENV=test ./bin/test.sh",
-    "prod":"NODE_ENV=prod node index.js"
+    "prod":"CI=true node index.js"
   },
   "author": "",
   "license": "ISC",
