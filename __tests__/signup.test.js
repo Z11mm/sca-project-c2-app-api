@@ -50,19 +50,19 @@ describe("SignUp API", () => {
         });
       })
 
-      describe('Create user successful', () => {
-        const payload = {
-          name: "Ciroma",
-          email: "ciroma@ciroma.com",
-          password: 123,
-        };
+      // describe('Create user successful', () => {
+      //   const payload = {
+      //     name: "Ciroma",
+      //     email: "ciroma@ciroma.com",
+      //     password: 123,
+      //   };
 
-        test("Status", async () => {
-          const res = await app.post('/api/signup').send(payload);
+      //   test("Status", async () => {
+      //     const res = await app.post('/api/signup').send(payload);
             
-          expect(res.statusCode).to.equal(200);
-        });
-      })
+      //     expect(res.statusCode).to.equal(200);
+      //   });
+      // })
     })
   });
 });
