@@ -6,7 +6,7 @@ set -e
 # Run the postgres container only
 docker-compose -f docker-compose-test.yml up -d
 
-echo 'postgres not yet ready to accept connections'
+echo 'postgres not yet ready to accept connections...'
 # use builtin pg utitity to set timeout until db is up and ready to receive connections
 WAIT_FOR_PG_ISREADY='while ! pg_isready --quiet; do sleep 10; done;'
 
