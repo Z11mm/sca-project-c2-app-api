@@ -22,7 +22,7 @@ services:
     # env_file:
     #   - ./.env.test.local
     environment:
-      - DB_URI: "postgres://postgres:test@postgres:5432/faceapp-test"
+      # - DB_URI: "postgres://postgres:test@postgres:5432/faceapp-test"
       - POSTGRES_DB: faceapp-test
       - POSTGRES_USER: postgres
       - POSTGRES_PASSWORD: test
