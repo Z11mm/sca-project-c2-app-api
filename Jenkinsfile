@@ -19,9 +19,9 @@ pipeline {
       }
     }
 
-    stage('Build application') {
+    stage('Install application') {
       steps {
-        echo 'Building application'
+        echo 'Installing application'
         sh '''
         npm ci
 
