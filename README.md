@@ -40,26 +40,31 @@ Use a managed database service in production.
 
 Deploy the frontend and api on GKE while using GCP-managed Cloud SQL database service.
 
-* Frontend deployment (`react_deployment.yml`)
-Deploy the React frontend with a Load Balancer service to make it accessible over the public internet. <br>
-Configure Nginx as a reverse proxy to direct traffic to the API. <br>
-Enable Zero Downtime Deployment with a rolling update strategy in Kubernetes. <br>
+* Frontend deployment (`react_deployment.yml`) <br>
+    * Deploy the React frontend with a Load Balancer service to make it accessible over the public internet. <br>
 
-* API deployment
-Create Secrets for database credentials and service accounts for IAM authentication to Cloud SQL. <br>
+    * Configure Nginx as a reverse proxy to direct traffic to the API. <br>
 
-Deploy the API with a ClusterIP service which will ensure it is not accessible over the internet. <br>
-    The `service-acc-key.yml` file is the service account credentials required for the GKE cluster to access the Cloud SQL database. Deploy this file before `api_deployment.yml`<br>
-    The `api_deployment.yml` deployment file contains the Kubernetes objects- Secrets, Service and Deployment - required for this application for easy readability. The order of deployment is Secrets, Service and then Deployment. <br>   
+    * Enable Zero Downtime Deployment with a rolling update strategy in Kubernetes. <br>
 
-Enable Zero Downtime Deployment with a rolling update strategy in Kubernetes. <br>
+* API deployment <br>
+
+    * Create Secrets for database credentials and service accounts for IAM authentication to Cloud SQL. <br>
+
+    * Deploy the API with a ClusterIP service which will ensure it is not accessible over the internet. <br>
+
+    * The `service-acc-key.yml` file is the service account credentials required for the GKE cluster to access the Cloud SQL database. Deploy this file before `api_deployment.yml`<br>
+
+    * The `api_deployment.yml` deployment file contains the Kubernetes objects- Secrets, Service and Deployment - required for this application for easy readability. The order of deployment is Secrets, Service and then Deployment. <br>   
+
+    * Enable Zero Downtime Deployment with a rolling update strategy in Kubernetes. <br>
 
 
 * Database deployment
-Setup Postgres on Cloud SQL instance.
-Use Cloud SQL Auth Proxy for secure access to Cloud SQL instance without the need for authorized networks or  
+    * Setup Postgres on Cloud SQL instance.
+    * Use Cloud SQL Auth Proxy for secure access to Cloud SQL instance without the need for authorized networks or  
 for configuring SSL.
-Setup Cloud SQL Auth Proxy as a 'sidecar', to run as a container within the pod running the API container. 
+    * Setup Cloud SQL Auth Proxy as a 'sidecar', to run as a container within the pod running the API container. 
 
 
 ## Infrastructure Provisioning
@@ -151,9 +156,11 @@ The CD portion of the script does the following:
 * Sends Slack notifications when build starts and if build is successful or build fails.
 
 ## Monitoring
+
 Monitor your application running in GKE through the built-in Cloud Operations for GKE which has Cloud Monitoring and Logging by default. <br>
-Set up a Monitoring Dashboard for GKE
+
+* Set up a Monitoring Dashboard for GKE
 ![Monitoring Dashboard for GKE](/assets/images/gke-dashboard.png)
 
-Set up an alerting policy to get notifications, with Slack as the notification channel
+* Set up an alerting policy to get notifications, with Slack as the notification channel
 ![Alerting policy](/assets/images/alerting-policy.png)
