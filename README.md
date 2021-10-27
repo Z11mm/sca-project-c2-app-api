@@ -1,6 +1,8 @@
 # Project: Deploy a Three-Tier application to The Cloud
 
 ## Introduction
+This is my final project for the She Code Africa Cloud School(Cohort 2). <br>
+
 This application is a face-detection app based off of the AI/ML [Clarifai API](https://www.clarifai.com/models/ai-face-detection). The application allows users to upload images of audiences in an event/meeting and record the audience count. 
 
 ## Application Architecture
@@ -16,13 +18,13 @@ The api routes are in the `routes.js` file, with the route handlers in the `/con
 The server entrypoint is `index.js`, with the server setup in `server.js`.<br>
 Configure environment and environment variables in `.env` files and `config.js`, with different `.env` files created for dev and testing environments. Use the [dotenv-flow](https://www.npmjs.com/package/dotenv-flow) package.
 
-2. Database - PostgreSQL
+2. Database - PostgreSQL <br>
 The database is made up of three tables - `users`, `login` and `meetings`. Sql scripts to create the database tables and populate the tables with dummy data are in the `/postgres` directory.
 
 ## Development Environment
 In the project directory, run: <br>
 
-* `docker-compose -f docker-compose.yml up --build` to spin up a development environment. This will create an api container and a database container.
+* `docker-compose -f docker-compose.yml up` to spin up a development environment(add the `--build` flag when you run the command for the first time or you add new dependencies). This will create an api container and a database container.
 
 ## Testing Environment
 * Integration tests are written using Jest, Chai and Supertest, within the `/__tests__` directory. <br>
@@ -38,7 +40,7 @@ Use a managed database service in production.
 ## Deployment Architecture
 ![Deployment Architecture](/assets/images/deploy-str.png)
 
-Deploy the frontend and api on GKE while using GCP-managed Cloud SQL database service.
+Deploy the frontend and api on the same GKE cluster while using GCP-managed Cloud SQL database service.
 
 * Frontend deployment (`react_deployment.yml`) <br>
     * Deploy the React frontend with a Load Balancer service to make it accessible over the public internet. <br>
@@ -157,10 +159,11 @@ The CD portion of the script does the following:
 
 ## Monitoring
 
-Monitor your application running in GKE through the built-in Cloud Operations for GKE which has Cloud Monitoring and Logging by default. <br>
+Monitor the application running in GKE through the built-in Cloud Operations for GKE which has Cloud Monitoring and Logging by default. <br>
 
 * Set up a Monitoring Dashboard for GKE
 ![Monitoring Dashboard for GKE](/assets/images/gke-dashboard.png)
 
 * Set up an alerting policy to get notifications, with Slack as the notification channel
 ![Alerting policy](/assets/images/alerting-policy.png)
+![Alerting policy](/assets/images/IMG_0172.PNG)
