@@ -14,12 +14,34 @@ This application is a three-tier application, with the frontend and the backend 
 ### Backend architecture
 The backend is made up of the API and the database. 
 1. API <br>
+The API collection is documented [here](https://documenter.getpostman.com/view/7848920/UV5f8u2r)
 The api routes are in the `routes.js` file, with the route handlers in the `/controllers` directory. <br>
 The server entrypoint is `index.js`, with the server setup in `server.js`.<br>
 Configure environment and environment variables in `.env` files and `config.js`, with different `.env` files created for dev and testing environments. Use the [dotenv-flow](https://www.npmjs.com/package/dotenv-flow) package.
 
 2. Database - PostgreSQL <br>
 The database is made up of three tables - `users`, `login` and `meetings`. Sql scripts to create the database tables and populate the tables with dummy data are in the `/postgres` directory.
+```
+    List of relations
+ Schema |   Name   | Type  
+--------+----------+-------
+ public | login    | table 
+ public | meetings | table 
+ public | users    | table
+
+ SELECT * FROM users;
+ id | name  |      email      | department |   title   |       joined
+----+-------+-----------------+------------+-----------+---------------------
+
+SELECT * FROM meetings;
+ id |  event_name   | no_of_people | location |       date_recorded        | user_id
+----+---------------+--------------+----------+----------------------------+---------
+
+SELECT * FROM login;
+ id |                             hash                             |      email
+----+--------------------------------------------------------------+-----------------
+
+```
 
 ## Development Environment
 In the project directory, run: <br>
@@ -31,7 +53,7 @@ In the project directory, run: <br>
 
 In the project directory, run: <br>
 
-* `npm run test-script` to launch a local test environment. This runs a bash script defined in `/bin/test.sh`.
+* `npm run test-script` to launch a test environment and avoid testing against the actual production database. This runs a bash script defined in `/bin/test.sh`.
 
 ## Production Environment
 * Run `docker-compose -f docker-compose-prod.yml build` to create a production-ready image for the api. <br>
@@ -55,6 +77,8 @@ Deploy the frontend and api on the same GKE cluster while using GCP-managed Clou
 
     * Deploy the API with a ClusterIP service which will ensure it is not accessible over the internet. <br>
 
+    * Add a service account with the Cloud SQL Client IAM role.
+
     * The `service-acc-key.yml` file is the service account credentials required for the GKE cluster to access the Cloud SQL database. Deploy this file before `api_deployment.yml`<br>
 
     * The `api_deployment.yml` deployment file contains the Kubernetes objects- Secrets, Service and Deployment - required for this application for easy readability. The order of deployment is Secrets, Service and then Deployment. <br>   
@@ -64,9 +88,8 @@ Deploy the frontend and api on the same GKE cluster while using GCP-managed Clou
 
 * Database deployment
     * Setup Postgres on Cloud SQL instance.
-    * Use Cloud SQL Auth Proxy for secure access to Cloud SQL instance without the need for authorized networks or  
-for configuring SSL.
-    * Setup Cloud SQL Auth Proxy as a 'sidecar', to run as a container within the pod running the API container. 
+    * Use Cloud SQL Auth Proxy for secure access to Cloud SQL instance without the need for authorized networks or  for configuring SSL.
+    * Setup Cloud SQL Auth Proxy as a 'sidecar', to run as a container within the pod running the API container. Mount service account secret as a volume on Cloud SQL Auth Proxy container.
 
 
 ## Infrastructure Provisioning
@@ -105,6 +128,7 @@ To install Ansible, follow these steps:
 
     * Update Repository by including the official project’s PPA <br>
      `sudo apt-get update` <br>
+     `sudo apt-get install software-properties-common`
      `sudo apt-add-repository -y ppa:ansible/ansible` <br>
      `sudo apt-get update` to refresh the package manager <br>
 
