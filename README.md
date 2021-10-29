@@ -141,7 +141,9 @@ To install Ansible, follow these steps:
         - Google Kubernetes Engine
         - Docker
         - Slack Notifications
-
+        - 
+    -  Assign a service account with full IAM access to the Jenkins instance to enable it interact with GCP resources.
+  
 ## Continuous Integration (CI pipeline)  
 A push to the repository triggers the CI/CD script in the Jenkinsfile. The CI portion of the script does the following:
 * Runs tests.
