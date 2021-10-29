@@ -4,6 +4,7 @@ const handleSignUp = (dB, bcrypt) => (req, res) => {
     return res.status(400).json('incorrect form submission');
   }
 
+  // Insert encrypted password into login table, add user to users table and login the user.
   const hash = bcrypt.hashSync(password);
   dB.transaction(trx => {
     trx

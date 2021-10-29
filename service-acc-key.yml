@@ -1,3 +1,6 @@
+# Service account private key that allows gke access to cloud sql database,
+# through cloud sql auth proxy
+
 apiVersion: v1
 kind: Secret
 metadata:

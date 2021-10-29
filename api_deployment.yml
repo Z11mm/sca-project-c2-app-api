@@ -1,3 +1,6 @@
+# Kubernetes deployment file for api - specify database credentials and api key in Secrets
+# Order of deployment: Secrets > Service > Deployment
+
 apiVersion: v1
 kind: Secret
 metadata:

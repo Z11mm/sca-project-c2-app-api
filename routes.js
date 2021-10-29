@@ -19,7 +19,6 @@ const dB = knex({
   client: "pg",
   connection: db.uri
 });
-console.log(db.uri)
 
 // Routes
 router.get("/api", async (req, res) => {
@@ -33,7 +32,6 @@ router.post("/api/signup", signup.handleSignUp(dB, bcrypt));
 router.get("/api/profile/:id", profile.getProfile(dB));
 router.put("/api/profile/:id", profile.updateProfile(dB));
 
-router.put("/api/image", image.setImageEntries(dB));
 router.post("/api/imageurl", image.handleApiCall());
 
 router.get("/api/meeting", meeting.getAllMeetings(dB));

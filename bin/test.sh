@@ -1,4 +1,6 @@
 #!/bin/bash
+# This script runs tests against a test database and takes down the containers after testing.
+
 
 # On any errors, abort script
 set -e 

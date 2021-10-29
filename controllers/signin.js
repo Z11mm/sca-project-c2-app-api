@@ -4,6 +4,8 @@ const handleSignIn = (dB, bcrypt) => (req, res) => {
   if (!email || !password) {
     return res.status(400).json('incorrect form submission');
   }
+
+  // Compare user login input with data in login table. If valid, return user; else error.
   dB.select('email', 'hash')
     .from('login')
     .where('email', '=', email)

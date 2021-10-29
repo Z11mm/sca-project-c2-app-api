@@ -18,6 +18,7 @@ const updateProfile = (dB) => (req, res) => {
     return res.status(400).json("incorrect form submission");
   }
 
+  // Search users table by id and return user
   dB("users")
     .where({ id })
     .update({ name, department, title })

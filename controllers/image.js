@@ -1,3 +1,4 @@
+// Route handler to make api call to Clarifai api for face detection
 
 const Clarifai = require('clarifai');
 const API_KEY = process.env.CLARIFAI_API;
@@ -16,20 +17,6 @@ const handleApiCall = () => (req, res) => {
     .catch((err) => res.status(400).json("unable to handle api call"));
 };
 
-const setImageEntries = dB => (req, res) => {
-  const { id } = req.body;
-
-  dB('users')
-    .where('id', '=', id)
-    .increment('entries', 1)
-    .returning('entries')
-    .then(entries => {
-      res.json(entries[0]);
-    })
-    .catch(err => res.status(400).json('unable to get entries'));
-};
-
 module.exports = {
-  setImageEntries: setImageEntries,
   handleApiCall: handleApiCall
 };
