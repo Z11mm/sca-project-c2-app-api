@@ -14,7 +14,7 @@ This application is a three-tier application, with the frontend and the backend 
 ### Backend architecture
 The backend is made up of the API and the database. 
 1. API <br>
-The API collection is documented [here](https://documenter.getpostman.com/view/7848920/UV5f8u2r)
+The API collection is documented [here](https://documenter.getpostman.com/view/7848920/UV5f8u2r). <br>
 The api routes are in the `routes.js` file, with the route handlers in the `/controllers` directory. <br>
 The server entrypoint is `index.js`, with the server setup in `server.js`.<br>
 Configure environment and environment variables in `.env` files and `config.js`, with different `.env` files created for dev and testing environments. Use the [dotenv-flow](https://www.npmjs.com/package/dotenv-flow) package.
