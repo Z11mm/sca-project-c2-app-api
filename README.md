@@ -195,7 +195,7 @@ Monitor the application running in GKE through the built-in Cloud Operations for
 ![Alerting policy](/assets/images/IMG_0172.PNG)
 
 ## Articles written during the She Code Africa Cloud school Cohort 2 program: <br>
-* https://medium.com/codex/users-groups-and-permissions-in-linux-93895ae57d93 Users, Groups and Permissions in Linux
-* https://ziimm.medium.com/how-to-deploy-a-reactjs-web-application-on-digitalocean-11d6d8d57b68 How to Deploy a React Web Application on DigitalOcean
-* https://ziimm.medium.com/set-up-a-ci-cd-pipeline-with-nodejs-jenkins-and-google-cloud-cc63b7ed9f41 Set up a CI/CD pipeline with NodeJS, Jenkins and Google Cloud
-* https://ziimm.medium.com/how-to-setup-a-terraform-remote-backend-in-google-cloud-6bb3f1829d5c how to set up a Terraform Remote Backend in Google Cloud
+* [Users, Groups and Permissions in Linux](https://medium.com/codex/users-groups-and-permissions-in-linux-93895ae57d93) 
+* [How to Deploy a React Web Application on DigitalOcean](https://ziimm.medium.com/how-to-deploy-a-reactjs-web-application-on-digitalocean-11d6d8d57b68)
+* [Set up a CI/CD pipeline with NodeJS, Jenkins and Google Cloud](https://ziimm.medium.com/set-up-a-ci-cd-pipeline-with-nodejs-jenkins-and-google-cloud-cc63b7ed9f41)
+* [How to Set Up a Terraform Remote Backend in Google Cloud](https://ziimm.medium.com/how-to-setup-a-terraform-remote-backend-in-google-cloud-6bb3f1829d5c)
