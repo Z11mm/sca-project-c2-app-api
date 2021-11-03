@@ -21,4 +21,4 @@ echo 'running all tests'
 jest --testTimeout=10000
 
 echo 'tearing down db and any other running container'
-docker-compose -f docker-compose-test.yml down -v --remove-orphans
+docker-compose -f docker-compose-test.yml down -v
