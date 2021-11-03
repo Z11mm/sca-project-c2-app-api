@@ -34,7 +34,7 @@ pipeline {
         echo 'Testing application'
         sh '''
         npm run test-script
-        docker-compose -f docker-compose-test.yml down -v --remove-orphans
+        docker-compose -f docker-compose-test.yml down -v
         '''
       }
     }
