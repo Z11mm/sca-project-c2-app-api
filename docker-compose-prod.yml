@@ -6,7 +6,5 @@ services:
   api:
     image: masterziii/sca-project-backend
     build: .
-    # env_file:
-    #   - ./.env.prod.local
     ports:
       - "3000:3000"
