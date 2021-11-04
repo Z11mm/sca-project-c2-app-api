@@ -65,7 +65,6 @@ pipeline {
       }
     }
 
-  // dgn
     stage('Deploy to GKE') {
       steps {
         echo 'Deploying to GKE'
