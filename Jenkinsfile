@@ -19,9 +19,9 @@ pipeline {
       }
     }
 
-    stage('Install application') {
+    stage('Install app dependencies') {
       steps {
-        echo 'Installing application'
+        echo 'Installing app dependencies'
         sh '''
         npm ci
 
@@ -46,7 +46,6 @@ pipeline {
         docker-compose -f docker-compose-prod.yml build
         docker image ls
         '''
-        echo 'complete'
       }
     }
 
