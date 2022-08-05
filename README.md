@@ -62,6 +62,8 @@ Use a managed database service in production.
 ## Deployment Architecture
 ![Deployment Architecture](/assets/images/gke-system-diagram.png)
 
+
+
 Deploy the frontend and api on the same GKE cluster while using GCP-managed Cloud SQL database service.
 
 * Frontend deployment (`react_deployment.yml`) <br>
