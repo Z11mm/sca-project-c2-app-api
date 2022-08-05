@@ -60,7 +60,7 @@ In the project directory, run: <br>
 Use a managed database service in production.
 
 ## Deployment Architecture
-![Deployment Architecture](/assets/images/deploy-str.png)
+![Deployment Architecture](/assets/images/gke-system-diagram.png)
 
 Deploy the frontend and api on the same GKE cluster while using GCP-managed Cloud SQL database service.
 
